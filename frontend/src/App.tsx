@@ -161,7 +161,7 @@ const SignInForm = () => {
 };
 
 const Protected = ({ authUser }: { authUser: AuthUser }) => {
-  const [me, setMe] = useState();
+  const [me, setMe] = useState<{ uid: string }>();
 
   useEffect(() => {
     let ignore = false;
@@ -172,7 +172,10 @@ const Protected = ({ authUser }: { authUser: AuthUser }) => {
           headers: { Authorization: `Bearer ${token}` },
         }),
       )
-      .then(console.log);
+      .then((v) => v.json())
+      .then((v) => {
+        if (!ignore) setMe(v);
+      });
     return () => {
       ignore = true;
     };
@@ -187,6 +190,7 @@ const Protected = ({ authUser }: { authUser: AuthUser }) => {
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       <div>uid: {authUser.uid}</div>
       <div>email: {authUser.email}</div>
+      <div>me?.uid: {me?.uid}</div>
       <a href="#" onClick={onSignOut} style={{ alignSelf: 'end' }}>
         Sign Out
       </a>
