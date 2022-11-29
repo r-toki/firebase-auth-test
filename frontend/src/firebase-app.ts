@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app';
+import { connectAuthEmulator, getAuth } from 'firebase/auth';
 
 initializeApp({
   apiKey: 'AIzaSyCBe1aMcQzZEsASF-588VaYuub90uIzNPU',
@@ -9,3 +10,5 @@ initializeApp({
   appId: '1:749021592402:web:ccb2c6f713ed5b0808d88b',
   measurementId: 'G-1C7DJPNCW7',
 });
+
+if (import.meta.env.DEV) connectAuthEmulator(getAuth(), 'http://localhost:9099');
