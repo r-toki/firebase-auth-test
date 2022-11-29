@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "fir-auth-3e082"
+  },
+  "targets": {
+    "fir-auth-3e082": {
+      "hosting": {
+        "r-toki-firebase-auth-test": [
+          "r-toki-firebase-auth-test"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

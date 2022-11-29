@@ -161,8 +161,6 @@ const SignInForm = () => {
 };
 
 const Protected = ({ authUser }: { authUser: AuthUser }) => {
-  const AUTH_URL = 'http://localhost:3000';
-
   const [me, setMe] = useState();
 
   useEffect(() => {
@@ -170,7 +168,9 @@ const Protected = ({ authUser }: { authUser: AuthUser }) => {
     authUser
       .getIdToken()
       .then((token) =>
-        fetch([AUTH_URL, 'me'].join('/'), { headers: { Authorization: `Bearer ${token}` } }),
+        fetch([import.meta.env.VITE_APP_AUTH_URL, 'me'].join('/'), {
+          headers: { Authorization: `Bearer ${token}` },
+        }),
       )
       .then(console.log);
     return () => {
